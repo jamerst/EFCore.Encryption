@@ -11,7 +11,7 @@ public abstract class TestFixtureBase<TContext> : IDisposable
 
         DbContext.Database.EnsureCreated();
 
-        SeedData.Seed(DbContext);
+        TestData.Seed(DbContext);
     }
 
     public void Dispose()

@@ -1,6 +1,6 @@
 namespace EFCore.Encryption.Tests.Sqlite;
 
-public class SqliteTests : TestBase<SqliteTestFixture, SqliteTestContext>
+public class SqliteTests : DbTestBase<SqliteTestFixture, SqliteTestContext>
 {
     public SqliteTests(SqliteTestFixture fixture) : base(fixture) { }
 }
