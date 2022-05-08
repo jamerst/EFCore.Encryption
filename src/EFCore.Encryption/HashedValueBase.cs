@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore.Query;
+
 namespace EFCore.Encryption;
 
 public abstract class HashedValueBase<T> : IHashedValue<T> {
@@ -10,7 +12,7 @@ public abstract class HashedValueBase<T> : IHashedValue<T> {
     }
     public static implicit operator string(HashedValueBase<T> hashed) => hashed.Value;
 
-    public bool HashEquals(T value)
+    public bool HashEquals([NotParameterized] T value)
     {
         return Value == GetHashString(value);
     }

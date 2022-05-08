@@ -1,0 +1,43 @@
+version: "3.8"
+
+services:
+  test:
+    build:
+      context: ../
+      dockerfile: EFCore.Encryption.Tests/Dockerfile
+    networks:
+      - test
+
+  postgres:
+    image: "postgres:latest"
+    environment:
+      POSTGRES_USER: "test"
+      POSTGRES_PASSWORD: "test"
+    ports:
+      - "5432:5432"
+    networks:
+      - test
+
+  mysql:
+    image: "mysql:latest"
+    environment:
+      MYSQL_ROOT_PASSWORD: test
+    ports:
+      - "3306:3306"
+    networks:
+      - test
+
+  mssql:
+    image: "mcr.microsoft.com/mssql/server:latest"
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "T3st!123"
+      MSSQL_PID: "Standard"
+    ports:
+      - "1433:1433"
+    networks:
+      - test
+
+networks:
+  test:
+    driver: bridge

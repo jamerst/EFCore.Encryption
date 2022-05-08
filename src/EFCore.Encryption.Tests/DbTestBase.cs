@@ -138,6 +138,56 @@ public abstract class DbTestBase<TFixture, TContext> : IClassFixture<TFixture>
     }
     #endregion
 
+    #region HashEquals with variable
+    [Fact]
+    public async Task NonCaseSensitive_Variable_SameCase()
+    {
+        string val = "Smith";
+
+        var users = await db.Users.Where(u => u.Surname.Hashed.HashEquals(val)).ToListAsync();
+
+        users
+            .Should()
+            .OnlyContain(u => u.Surname.Value.ToLower() == "smith", "only users with a surname of Smith should be returned");
+    }
+
+    [Fact]
+    public async Task NonCaseSensitive_Variable_DifferentCase()
+    {
+        string val = "smith";
+
+        var users = await db.Users.Where(u => u.Surname.Hashed.HashEquals(val)).ToListAsync();
+
+        users
+            .Should()
+            .OnlyContain(u => u.Surname.Value.ToLower() == "smith", "only users with a surname of Smith should be returned");
+    }
+
+    [Fact]
+    public async Task NonCaseSensitive_Variable_SameCase_NoResults()
+    {
+        string val = "Brown";
+
+        var users = await db.Users.Where(u => u.Surname.Hashed.HashEquals(val)).ToListAsync();
+
+        users
+            .Should()
+            .BeEmpty("no users have a surname of Brown");
+    }
+
+    [Fact]
+    public async Task NonCaseSensitive_Variable_DifferentCase_NoResults()
+    {
+        string val = "BROWN";
+
+        var users = await db.Users.Where(u => u.Surname.Hashed.HashEquals(val)).ToListAsync();
+
+        users
+            .Should()
+            .BeEmpty("no users have a surname of Brown");
+    }
+    #endregion
+
     #region HashEquals Case-sensitive
     [Fact]
     public async Task CaseSensitive()

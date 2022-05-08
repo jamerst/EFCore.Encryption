@@ -29,9 +29,11 @@ using (var db = new SampleContext()) {
         await db.SaveChangesAsync();
     }
 
+    string val = "smiTh";
+
     // will return both users even though search string is cased differently
     Console.WriteLine("Users with a surname of 'Smith':");
-    await foreach (var user in db.Users.Where(u => u.Surname.Hashed.HashEquals("smiTh")).AsAsyncEnumerable()) {
+    await foreach (var user in db.Users.Where(u => u.Surname.Hashed.HashEquals(val)).AsAsyncEnumerable()) {
         Console.WriteLine(user.ToOutputString());
     }
 

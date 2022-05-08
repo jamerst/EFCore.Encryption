@@ -11,9 +11,18 @@ internal class HashedValueTypeOptionsExtension<THash, TValue> : IDbContextOption
 {
     public DbContextOptionsExtensionInfo? _info;
 
+    private string StoreType = "TEXT";
+
+    public HashedValueTypeOptionsExtension() : base() { }
+
+    public HashedValueTypeOptionsExtension(string storeType) : base()
+    {
+        StoreType = storeType;
+    }
+
     public void ApplyServices(IServiceCollection services)
     {
-        services.AddHashedType<THash, TValue>();
+        services.AddHashedType<THash, TValue>(StoreType);
     }
 
     public DbContextOptionsExtensionInfo Info => _info ??= new ExtensionInfo(this);
