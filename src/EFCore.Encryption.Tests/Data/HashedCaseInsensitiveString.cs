@@ -5,7 +5,7 @@ public class HashedCaseInsensitiveString : HashedString
     public HashedCaseInsensitiveString() : base() { }
     public HashedCaseInsensitiveString(string value) : base(value) { }
 
-    public override string GetHashValue(string value)
+    public override string TransformValue(string value)
     {
         return value.ToLower();
     }

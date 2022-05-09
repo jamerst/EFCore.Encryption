@@ -2,6 +2,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EFCore.Encryption;
 
+/// <summary>
+/// An encrypted field implementation where the value is of type <typeparamref name="TValue"/> and the hashed value is of type <typeparamref name="THash"/>.
+/// </summary>
+/// <typeparam name="TValue">Type of value to encrypt</typeparam>
+/// <typeparam name="THash">Hashed value type to use</typeparam>
 public interface IEncryptedField<TValue, THash>
     where THash : IHashedValue<TValue>, new()
 {
@@ -11,7 +16,7 @@ public interface IEncryptedField<TValue, THash>
     byte[] Encrypted { get; set; }
 
     /// <summary>
-    /// Hashed version of the data. Use this for querying or comparison.
+    /// Hashed version of the data
     /// </summary>
     THash Hashed { get; set; }
 
@@ -28,9 +33,9 @@ public interface IEncryptedField<TValue, THash>
     Task<TValue> GetValueAsync();
 
     /// <summary>
-    /// Set the encrypted value asynchronously
+    /// Set the encrypted value to <paramref name="value"/> asynchronously
     /// </summary>
     /// <param name="value">Value to encrypt</param>
-    /// <returns>Task that completes when the value has been encrypted and stored</returns>
+    /// <returns>Task that completes when the encrypted value has been computed and set</returns>
     Task SetValueAsync(TValue value);
 }

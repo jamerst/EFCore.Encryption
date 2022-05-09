@@ -35,7 +35,7 @@ The following methods should be implemented:
 - `ComputeHash(byte[] bytes)` and `ComputeHashAsync(byte[] bytes)` - compute the hash of a given byte array, return as a string (e.g. base64 encoded)
 - `ToBinary(T value)` - convert a value into a byte array
 
-The `GetHashValue` method is optional. This method allows you to modify the value before it is hashed, e.g. to allow case-insensitive querying you should normalise the case of the string value.
+The `TransformValue` method is optional. This method allows you to transform/modify the value before it is hashed, e.g. to allow case-insensitive querying you should normalise the case of the string value.
 
 Note that you will need to add the parameterless constructor since constructors are not inherited in C#.
 
