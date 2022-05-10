@@ -4,7 +4,7 @@ namespace Sample.Data;
 
 public class EncryptedString : EncryptedField<string, HashedString>
 {
-    public EncryptedString() { }
+    public EncryptedString() : base() { }
     public EncryptedString(string value) : base(value) { }
     public static implicit operator EncryptedString(string val) => new EncryptedString(val);
 

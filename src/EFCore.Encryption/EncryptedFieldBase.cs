@@ -14,7 +14,10 @@ public abstract class EncryptedFieldBase<TValue, THash> : IEncryptedField<TValue
     /// <summary>
     /// Create a new encrypted field instance
     /// </summary>
-    public EncryptedFieldBase() { }
+    public EncryptedFieldBase()
+    {
+        Hashed = new THash();
+    }
 
     /// <summary>
     /// Create a new encrypted field instance using <paramref name="value"/>

@@ -6,7 +6,8 @@ namespace EFCore.Encryption;
 /// A base class for a hashed value where the value to hash is of type <typeparamref name="T"/>
 /// </summary>
 /// <typeparam name="T"></typeparam>
-public abstract class HashedValueBase<T> : IHashedValue<T> {
+public abstract class HashedValueBase<T> : IHashedValue<T>
+{
     /// <summary>
     /// The hash as a string
     /// </summary>

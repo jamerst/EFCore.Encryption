@@ -6,7 +6,7 @@ namespace EFCore.Encryption.Tests.Data;
 
 public class EncryptedDateOnly : EncryptedField<DateOnly, HashedDateOnly>
 {
-    public EncryptedDateOnly() { }
+    public EncryptedDateOnly() : base() { }
     public EncryptedDateOnly(DateOnly value) : base(value) { }
 
     public static implicit operator EncryptedDateOnly(DateOnly date) => new EncryptedDateOnly(date);

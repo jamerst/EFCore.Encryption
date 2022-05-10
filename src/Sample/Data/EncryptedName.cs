@@ -5,7 +5,7 @@ namespace Sample.Data;
 
 public class EncryptedName : EncryptedField<string, HashedCaseInsensitiveString>
 {
-    public EncryptedName() { }
+    public EncryptedName() : base() { }
     public EncryptedName(string value) : base(value) { }
     public static implicit operator EncryptedName(string val) => new EncryptedName(val);
 

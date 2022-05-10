@@ -5,7 +5,7 @@ namespace Sample.Data;
 public abstract class EncryptedField<TValue, THash> : EncryptedFieldBase<TValue, THash>
     where THash : HashedValueBase<TValue>, new()
 {
-    public EncryptedField() { }
+    public EncryptedField() : base() { }
 
     public EncryptedField(TValue value) : base(value) { }
 
